@@ -1,0 +1,16 @@
+
+{% extends 'Sellerbase/sellerbase.html' %}
+{%load crispy_forms_tags %}
+
+  {% block content %}
+
+
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+
+    {{product_form|crispy}}
+    <button type="submit">Click</button>
+</form>
+{% endblock %}

@@ -1,0 +1,107 @@
+{% extends 'Adminbase/adminbase.html' %}
+
+{% block content %}
+
+    <div class="row" >
+      {% load static %}
+               <div class="col-12" style="width: 100%;">
+                <div class="card ">
+                  <div class="card-body px-0 overflow-auto">
+                    <h4 class="card-title pl-4 text-center">Customer Details</h4>
+
+                    <div class="table-responsive">
+
+                      <table class="table">
+                        <thead class="bg-light">
+                          <tr>
+                            <th scope="col"><input class="form-check-input" type="checkbox"></th>
+                            <th>Customer Name</th>
+                            <th> Email</th>
+                            <th> Phonenumber</th>
+                            <th>Address</th>
+                            <th>City</th>
+                            <th>State</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        {%for data in customer %}
+                          <tr>
+                            <td>
+                              <input class="form-check-input" type="checkbox">
+                            </td>
+
+                            <td>
+                              <div class="d-flex align-items-center">
+
+                                <div class="table-user-name ml-3">
+                                  <p class="mb-0 font-weight-medium"> {{data.customer_name}} </p>
+                                </div>
+                              </div>
+                            </td>
+                            <td>
+                              <div class="d-flex align-items-center">
+
+                                <div class="table-user-name ml-3">
+                                  <p class="mb-0 font-weight-medium"> {{data.customer_email}} </p>
+                                </div>
+                              </div>
+                            </td>
+                            <td>
+                              <div class="d-flex align-items-center">
+
+                                <div class="table-user-name ml-3">
+                                  <p class="mb-0 font-weight-medium"> {{data.customer_pnumber}} </p>
+                                </div>
+                              </div>
+                            </td>
+                             <td>
+                              <div class="d-flex align-items-center">
+
+                                <div class="table-user-name ml-3">
+                                  <p class="mb-0 font-weight-medium"> {{data.customer_address}} </p>
+                                </div>
+                              </div>
+                            </td>
+                             <td>
+                              <div class="d-flex align-items-center">
+
+                                <div class="table-user-name ml-3">
+                                  <p class="mb-0 font-weight-medium"> {{data.customer_city}} </p>
+                                </div>
+                              </div>
+                            </td>
+                             <td>
+                              <div class="d-flex align-items-center">
+
+                                <div class="table-user-name ml-3">
+                                  <p class="mb-0 font-weight-medium"> {{data.customer_state}} </p>
+                                </div>
+                              </div>
+                            </td>
+                               <td>
+                              <div class="d-flex align-items-center">
+
+                                <div class="table-user-name ml-3">
+                                  <p class="mb-0 font-weight-medium">
+                                    <a class="btn btn-sm btn-primary" href=" {% url 'customer_delete' data.id %} ">delete</a>
+
+                                  </p>
+                                </div>
+                              </div>
+                            </td>
+
+                          </tr>
+
+                            {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+
+{% endblock %}

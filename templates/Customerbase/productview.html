@@ -1,0 +1,51 @@
+{% extends 'Customerbase/customerbase.html' %}
+
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        {% for prod in product %}
+        <div class="col-md-4 mb-4">
+            <div class="card text-center border-0 shadow rounded-4 h-100 p-3">
+
+                <!-- Product Image -->
+                {% if prod.product_img %}
+                <div class="mb-3" style="height: 180px;">
+                    <img src="{{ prod.product_img.url }}"
+                         alt="{{ prod.product_name }}"
+                         style="max-height: 100%; max-width: 100%; object-fit: contain;">
+                </div>
+                {% endif %}
+
+                <!-- Product Name -->
+                <h5 class="fw-bold">{{ prod.product_name }}</h5>
+
+                <!-- Product Description -->
+                <p class="text-muted small mb-2">{{ prod.product_description|truncatewords:10 }}</p>
+
+                <!-- Price -->
+                <h6 class="text-primary fw-bold mb-2">₹{{ prod.product_price }}</h6>
+
+                <!-- Add to Cart and Buy Now Buttons -->
+                <div class="d-flex justify-content-between">
+
+                    <a class="btn" href="{% url 'add_to_cart' prod.id %}" style="background-color: #08A045; color: white;">
+                         Add to Cart
+                    </a>
+
+                    <!-- Buy Now Button (Blue) -->
+                   <a class="btn btn-primary w-48 rounded-pill" href="{% url 'buynow' prod.id %}">
+                                             Buy Now
+                   </a>
+
+                </div>
+
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+{% endblock %}
