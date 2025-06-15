@@ -1,47 +1,62 @@
 {% extends 'Sellerbase/sellerbase.html' %}
 
 {% block content %}
-<h3 style="text-align:center;color:blue">Products</h3>
 <div class="container mt-5">
+  {% if message %}
+<div class="alert alert-warning text-center shadow-sm rounded-4 p-3 fs-5" role="alert"
+     style="background-color: #fff8e1; border-left: 6px solid #ffc107;">
+    <i class="mdi mdi-alert-circle-outline me-2 text-warning" style="font-size: 1.5rem;"></i>
+    {{ message }}
+</div>
+
+{% endif %}
+    <div class="container mt-5 text-center">
+  <h1 class="display-5 fw-semibold" style="color: #333;">
+    Enjoy a Seamless Sh Experience
+  </h1>
+  <p class="text-muted" style="font-size: 18px;">
+    Manage your listings, process orders smoothly, and enjoy quick delivery services – built for top sellers like you.
+  </p>
+</div>
+<br>
+
+
     <div class="row">
         {% for prod in datas %}
+        {% if prod.product_count > 0 %}
         <div class="col-md-4 mb-4">
-            <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100" style="min-height: 380px;">
+            <!-- for card-->
+            <div class="card text-center border-0 shadow-lg h-100 p-3"
+     style="border-radius: 25px;background-color: #e6f2ff;">
+
+
                 <!-- Product Image -->
                 {% if prod.product_img %}
-                <img src="{{ prod.product_img.url }}"
-                     alt="{{ prod.product_name }}"
-                     class="card-img-top"
-                     style="height: 180px; width: 100%; object-fit: cover; border-top-left-radius: 1rem; border-top-right-radius: 1rem; display: block; margin-left: auto; margin-right: auto;">
-                {% else %}
-                <img src="https://via.placeholder.com/300x180.png?text=No+Image"
-                     alt="No image"
-                     class="card-img-top"
-                     style="height: 180px; width: 100%; object-fit: cover; border-top-left-radius: 1rem; border-top-right-radius: 1rem; display: block; margin-left: auto; margin-right: auto;">
+                <div class="mb-3" style="height: 180px;">
+                    <img src="{{ prod.product_img.url }}"
+                         alt="{{ prod.product_name }}"
+                         class="img-fluid rounded-3"
+                         style="max-height: 100%; max-width: 100%; object-fit: contain;">
+                </div>
                 {% endif %}
 
-                <!-- Card Body -->
-                <div class="card-body p-3">
-                    <h6 class="card-title fw-semibold mb-1">{{ prod.product_name }}</h6>
-                    <small class="text-muted">{{ prod.product_brand }}</small>
-                    <p class="card-text small mt-2 mb-2" style="font-size: 0.85rem; color: black;">
-                            {{ prod.product_description|truncatewords:15 }}
-                    </p>
+
+                <h5 class="fw-bold">{{ prod.product_name }}</h5>
+
+
+                <p class="text-muted small mb-2">{{ prod.product_description|truncatewords:10 }}</p>
+
+
+                <h6 class="text-primary fw-bold mb-2">₹{{ prod.product_price }}</h6>
+                <span class="badge bg-light text-dark mb-3 border">Stock Level: {{ prod.product_count }}</span>
 
 
 
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span class="text-primary fw-bold">₹{{ prod.product_price }}</span>
-                         <a class="btn btn-sm btn-primary" href="{% url 'product_delete' prod.id %}">Delete</a>
 
-
-                   </div>
-
-                </div>
             </div>
         </div>
+        {% endif %}
         {% endfor %}
     </div>
 </div>
-
 {% endblock %}

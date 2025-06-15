@@ -1,0 +1,51 @@
+{% extends 'customerbase/customerbase.html' %}
+
+
+{% block content %}
+<br>
+<h2 class="text-center text-primary mb-4">Your Feedback & Our Responses</h2>
+<p class="text-center text-muted mb-4">
+  Thank you for sharing your thoughts with us! Below you'll find your submitted feedback and any responses from our support team. We truly appreciate your time and effort in helping us improve.
+</p>
+
+
+      {% csrf_token %}
+   <div class="table-responsive">
+    {% load static %}
+                        <table class="table">
+                            <thead>
+                                <tr class="text-dark">
+                                    <th scope="col"><input class="form-check-input" type="checkbox"></th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">messages</th>
+                                    <th scope="col">Replay Message</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {%for data in feedback %}
+                                <tr>
+                                    <td><input class="form-check-input" type="checkbox"></td>
+                                    <td>{{data.date}}</td>
+                                    <td>{{data.messages}}</td>
+                                    <td>
+                                        {% if data.replay is None %}
+                                        <h6> No replay</h6>
+
+                                        {% else %}
+                                         <h6>{{data.replay}}</h6>
+
+                                        {% endif %}
+
+                                    </td>
+
+                                </tr>
+
+
+
+                               {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+{% endblock %}

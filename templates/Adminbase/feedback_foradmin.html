@@ -1,0 +1,47 @@
+{% extends 'Adminbase/adminbase.html' %}
+
+
+{% block content %}
+
+
+      {% csrf_token %}
+   <div class="table-responsive">
+    {% load static %}
+                        <table class="table">
+                            <thead>
+                                <tr class="">
+                                    <th scope="col"><input class="form-check-input" type="checkbox"></th>
+                                    <th scope="col">Feedback Date</th>
+                                    <th scope="col">Messages</th>
+                                    <th scope="col">Username</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {%for data in data %}
+                                <tr>
+                                    <td><input class="form-check-input" type="checkbox"></td>
+                                    <td>{{data.date}}</td>
+                                    <td>{{data.messages}}</td>
+                                    <td>{{data.user.user}}</td>
+                                    <td> {% if data.replay is None %}
+                                        <a class="btn btn-sm btn-primary" href=" {% url 'replaymessage' data.id %}  ">Reply</a>
+
+
+                                        {% else %}
+                                         {{data.replay}}
+
+                                        {% endif %}
+
+                                    </td>
+
+
+
+                                </tr>
+
+                               {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+{% endblock %}

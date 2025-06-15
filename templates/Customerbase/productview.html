@@ -1,18 +1,43 @@
 {% extends 'Customerbase/customerbase.html' %}
 
 
+
 {% block content %}
 <div class="container mt-5">
+  {% if message %}
+<div class="alert alert-warning text-center shadow-sm rounded-4 p-3 fs-5" role="alert"
+     style="background-color: #fff8e1; border-left: 6px solid #ffc107;">
+    <i class="mdi mdi-alert-circle-outline me-2 text-warning" style="font-size: 1.5rem;"></i>
+    {{ message }}
+</div>
+
+{% endif %}
+    <div class="container mt-5 text-center">
+  <h1 class="display-5 fw-semibold" style="color: #333;">
+    Enjoy a Seamless Shopping Experience
+  </h1>
+  <p class="text-muted" style="font-size: 18px;">
+    Handpicked products, smooth checkout, and fast delivery – just for you.
+  </p>
+</div>
+<br>
+
+
     <div class="row">
         {% for prod in product %}
+        {% if prod.product_count > 0 %}
         <div class="col-md-4 mb-4">
-            <div class="card text-center border-0 shadow rounded-4 h-100 p-3">
+            <!-- for card-->
+            <div class="card text-center border-0 shadow-lg h-100 p-3"
+     style="border-radius: 25px;background-color: #e6f2ff;">
+
 
                 <!-- Product Image -->
                 {% if prod.product_img %}
                 <div class="mb-3" style="height: 180px;">
                     <img src="{{ prod.product_img.url }}"
                          alt="{{ prod.product_name }}"
+                         class="img-fluid rounded-3"
                          style="max-height: 100%; max-width: 100%; object-fit: contain;">
                 </div>
                 {% endif %}
@@ -23,29 +48,25 @@
                 <!-- Product Description -->
                 <p class="text-muted small mb-2">{{ prod.product_description|truncatewords:10 }}</p>
 
-                <!-- Price -->
+                <!-- Price and Availability -->
                 <h6 class="text-primary fw-bold mb-2">₹{{ prod.product_price }}</h6>
+                <span class="badge bg-light text-dark mb-3 border">Stock Level: {{ prod.product_count }}</span>
+
 
                 <!-- Add to Cart and Buy Now Buttons -->
-                <div class="d-flex justify-content-between">
-
-                    <a class="btn" href="{% url 'add_to_cart' prod.id %}" style="background-color: #08A045; color: white;">
-                         Add to Cart
-                    </a>
-
-                    <!-- Buy Now Button (Blue) -->
-                   <a class="btn btn-primary w-48 rounded-pill" href="{% url 'buynow' prod.id %}">
-                                             Buy Now
-                   </a>
-
-                </div>
+                 <div class="d-flex gap-2">
+                <a class="btn btn-outline-success w-50 rounded-pill fw-semibold" href="{% url 'addto_cart' prod.id %}">
+                    🛒 Add to Cart
+                </a>
+                <a class="btn btn-primary w-50 rounded-pill fw-semibold" href="{% url 'buynow' prod.id %}">
+                    ⚡ Buy Now
+                </a>
+            </div>
 
             </div>
         </div>
+        {% endif %}
         {% endfor %}
     </div>
 </div>
-
-
-
 {% endblock %}

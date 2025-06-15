@@ -120,7 +120,6 @@
                 <div class="item-name">{{ item.product.product_name }}</div>
                 <div class="item-price">₹{{ item.product.product_price|floatformat:2 }}</div>
                 <div class="quantity-controls">
-                    <!-- You can wire these buttons to update quantity -->
                     <a href="{% url 'quantity_decrease' item.id %}">-</a>
                     <span>{{ item.quantity }}</span>
                     <a href="{% url 'quantity_increase' item.id %}">+</a>
@@ -129,18 +128,17 @@
             <div class="item-total">
                 ₹{{ item.total_item_price|floatformat:2 }}
             </div>
+
+            <!-- Individual Buy Now Button -->
+            <a class="btn btn-sm btn-primary" href="{% url 'buynow' item.id %} ">  Buy Now</a>
+
         </div>
         {% endfor %}
-
-        <div class="cart-summary">
-            Total: ₹{{ total_price|floatformat:2 }}
-            <br>
-            <button class="checkout-btn">Place Order</button>
-        </div>
     {% else %}
         <div class="empty-cart">Your cart is empty.</div>
     {% endif %}
 </div>
+
 {% endblock %}
 
 

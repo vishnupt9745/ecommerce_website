@@ -82,6 +82,7 @@ WSGI_APPLICATION = 'TailWag_Supply_Project.wsgi.application'
 #     }
 # }
 
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",

@@ -1,0 +1,22 @@
+{% extends 'Customerbase/customerbase.html' %}
+
+{%load crispy_forms_tags %}
+{% block content %}
+
+<h2 class="text-center text-success mb-4">We’d Love to Hear From You!</h2>
+<p class="text-center text-muted mb-4">
+    Your thoughts matter to us. Whether it's a suggestion, a compliment, or a concern — your feedback helps us improve our service and make your experience even better. Please fill out the form below and let us know how we're doing.
+</p>
+
+<form method="post">
+      {% csrf_token %}
+    {{form|crispy}}
+    <button type="submit">Submit Feedback</button>
+
+</form>
+
+
+
+
+
+{% endblock %}

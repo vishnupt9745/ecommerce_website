@@ -1,0 +1,45 @@
+
+{% extends 'Adminbase/adminbase.html' %}
+{%load crispy_forms_tags %}
+
+{% block content %}
+
+{% for message in messages  %}
+
+{{message}}
+
+{% endfor %}
+
+
+
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+<div class="form-group">
+                    <label class=" form-control-label">Date</label>
+                    <input  required  class="form-control" readonly value="{{complaint.date}}">
+
+</div>
+
+ <div class="form-group">
+                    <label class=" form-control-label">Messages</label>
+                    <input  required  class="form-control" readonly value="{{complaint.messages}}">
+
+ </div>
+
+<div class="form-group">
+                    <label class=" form-control-label">Uesrname</label>
+                    <input  required  class="form-control" readonly value="{{complaint.user.user}}">
+
+</div>
+    <div class="form-group">
+                    <label for="company" class=" form-control-label">Reply</label>
+                    <textarea cols="5" rows="7" required id="company" class="form-control" name="reply">
+                </textarea>
+    </div>
+ <button type="submit">Click</button>
+
+</form>
+
+
+{% endblock %}

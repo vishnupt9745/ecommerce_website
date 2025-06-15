@@ -1,8 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
+from django.forms import DateInput
 
-
-from TailWag_Supply_app.models import Login, Seller, Customer, Product_s, BuyNow
+from TailWag_Supply_app.models import Login, Seller, Customer, Product_s, Buynow_data, Feedback
 
 
 class LoginRegister(UserCreationForm):
@@ -36,6 +36,21 @@ class ProductForm(forms.ModelForm):
 
 class BuynowForm(forms.ModelForm):
     class Meta:
-        model=BuyNow
+        model=Buynow_data
         fields='__all__'
-        include=('address','state','pincode','phone')
+        exclude=('seller','customer','product','product_img','choice','expected_date ')
+
+class BuynowStatus(forms.ModelForm):
+    expected_date = forms.DateField(widget=DateInput)
+    class Meta:
+        model=Buynow_data
+        fields='__all__'
+        exclude = ('seller', 'customer','product','quantity','address','state','pincode','phone','is_paid','order_date',)
+
+
+class ReplayForm(forms.ModelForm):
+
+    class Meta:
+        model=Feedback
+        fields='__all__'
+        exclude=('user','replay',)

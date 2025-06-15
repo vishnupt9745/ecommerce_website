@@ -1,0 +1,99 @@
+{% extends 'Customerbase/customerbase.html' %}
+
+{% block content %}
+
+    <div class="row" >
+      {% load static %}
+               <div class="col-12" style="width: 100%;">
+                <div class="card ">
+                  <div class="card-body px-0 overflow-auto">
+                    <h4 class="card-title pl-4 text-center">My Order Status</h4>
+
+                    <div class="table-responsive">
+
+                      <table class="table">
+                        <thead class="bg-light">
+                          <tr>
+                            <th scope="col"><input class="form-check-input" type="checkbox"></th>
+                            <th></th>
+                            <th>Product</th>
+                            <th> Product Quantity</th>
+                              <th>Expected Date</th>
+                            <th>Order Status</th>
+
+                          </tr>
+                        </thead>
+                        <tbody>
+                        {% for data in seller %}
+                          <tr>
+                            <td>
+                              <input class="form-check-input" type="checkbox">
+                            </td>
+                            <td>
+  <div class="d-flex align-items-center">
+    <img src="{{ data.product.product_img.url }}" alt="Product Image" style="width: 100px; height: auto;">
+  </div>
+</td>
+
+                            <td>
+                              <div class="d-flex align-items-center">
+
+                                <div class="table-user-name ml-3">
+                                  <p class="mb-0 font-weight-medium"> {{data.product}} </p>
+                                </div>
+                              </div>
+                            </td>
+                            <td>
+                              <div class="d-flex align-items-center">
+
+                                <div class="table-user-name ml-3">
+                                  <p class="mb-0 font-weight-medium"> {{data.quantity}} </p>
+                                </div>
+                              </div>
+                            </td>
+                                 <td>
+                              <div class="d-flex align-items-center">
+
+                                <div class="table-user-name ml-3">
+                                  <p class="mb-0 font-weight-medium"> {{data.expected_date}} </p>
+                                </div>
+                              </div>
+                            </td>
+                                 <td>
+                              <div class="d-flex align-items-center">
+
+                                <div class="table-user-name ml-3">
+                                  <p class="mb-0 font-weight-medium"> {{data.choice}} </p>
+                                </div>
+                              </div>
+                            </td>
+
+
+
+
+                              <div class="d-flex align-items-center">
+
+                                <div class="table-user-name ml-3">
+                                  <p class="mb-0 font-weight-medium">
+
+
+                                  </p>
+                                </div>
+                              </div>
+                            </td>
+
+                          </tr>
+
+                            {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+
+{% endblock %}
