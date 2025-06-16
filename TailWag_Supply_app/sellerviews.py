@@ -65,9 +65,7 @@ def customer_orders(request):
     user = request.user
     seller = Seller.objects.get(user=user)
     orders = Buynow_data.objects.filter(seller=seller)
-    print( orders)
-    print(seller)
-    print( user)
+
 
     return render(request, 'Sellerbase/customer_orders.html', {'orders': orders})
 @login_required(login_url='login_user')
@@ -81,3 +79,6 @@ def Workstatus(request,id):
             return redirect('customer_orders')
 
     return render(request,'Sellerbase/workstatus.html',{'form':form})
+
+
+

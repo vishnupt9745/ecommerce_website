@@ -19,6 +19,7 @@ urlpatterns = [
     path('work_status_update/<int:id>/',sellerviews.Workstatus,name='work_status_update'),
 
 
+
     path('customerregister',customerviews.Customer_register,name='customerregister'),
     path('productview_customer',customerviews.Productview,name='productview_customer'),
     path('productview_customerall', customerviews.Productviewall, name='productview_customerall'),
@@ -32,8 +33,6 @@ urlpatterns = [
     path('feedback',customerviews.feedback,name='feedback'),
     path('replay_feedback',customerviews.feedback_replay,name='replay_feedback'),
     path('product_search',customerviews.Product_search,name='product_search'),
-
-
 
 
 

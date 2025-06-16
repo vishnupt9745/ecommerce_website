@@ -4,8 +4,11 @@
 <div class="container mt-5">
     <div class="card shadow p-4 rounded-4">
         <h3 class="mb-4 text-center">Buy Now - {{ buy_data.product_name}}</h3>
+         <p>{{ buy_data.product_description}}</p>
         {% if buy_data.product_img %}
             <img src="{{ buy_data.product_img.url }}" alt="{{ buy_data.product }}" width="150" class="img-fluid rounded">
+
+
         {% else %}
             <p>No image available</p>
         {% endif %}

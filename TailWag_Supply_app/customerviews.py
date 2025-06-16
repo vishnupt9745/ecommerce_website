@@ -196,9 +196,9 @@ def Cart_buynow(request, id):
 def my_order_status(request):
     user=request.user
     customer = Customer.objects.get(user=user)
-    seller = Buynow_data.objects.filter(customer=customer)
+    orders = Buynow_data.objects.filter(customer=customer)
 
-    return render(request,'Customerbase/my_order.html',{'seller':seller})
+    return render(request,'Customerbase/my_order.html',{'order':orders})
 @login_required(login_url='login_user')
 def feedback(request):
     form = ReplayForm()
@@ -239,3 +239,5 @@ def Product_search(request):
 
     else:
         print("No search query provided.")
+
+

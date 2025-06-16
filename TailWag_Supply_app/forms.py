@@ -38,7 +38,7 @@ class BuynowForm(forms.ModelForm):
     class Meta:
         model=Buynow_data
         fields='__all__'
-        exclude=('seller','customer','product','product_img','choice','expected_date ')
+        exclude=('seller','customer','product','product_img','choice', 'expected_date',)
 
 class BuynowStatus(forms.ModelForm):
     expected_date = forms.DateField(widget=DateInput)
